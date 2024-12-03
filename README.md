@@ -1,0 +1,2 @@
+# SoundShape-RemixTool
+ SoundShape is an audio processing application designed to be used through a GUI or the Raspberry Pi, that offers the ability to let users remix their song or audio tracks in real-time as it plays. Users modify audio tracks in real-time using both a simple graphical user interface (GUI) and physical buttons. Users can apply effects that control the speed (speeding up or slowing down), add reverb, or layer background white noise, all simultaneously if desired.
