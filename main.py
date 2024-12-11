@@ -5,18 +5,26 @@ import pygame
 # Importing buttons:
 from load_audio import load_audio
 from play_pause import play_pause
-from speed_control import speed_up, slow_down
-from effects import toggle_reverb, toggle_white_noise
+from effects import toggle_reverb, toggle_white_noise, toggle_reverb_slowdown, toggle_reverb_spedup
 
 # Initializing pygame mixer:
 pygame.mixer.init()
 
 def create_gui():
     root = tk.Tk() # root window
-    root.title("Audio Player")
+    root.title("SoundShape")
 
     # Initial shared state (passed to other functions):
-    state = {"track": None, "playing": False, "speed_factor": 1.0, "reverb": False, "white_noise_channel": None}
+    state = {
+        "playing": False,           # Track if the song is playing
+        "reverb": False,            # Track if reverb is enabled
+        "reverb_slowdown": False,   # Track if slowed reverb is enabled
+        "reverb_spedup": False,     # Track if sped up reverb is enabled
+        "track": None,              # Store the track filename
+        "speed": 1.0,               # Initialize the speed key at normal speed (1x)
+        "current_position": 0,      # Current position of the song (in milliseconds)
+        "white_noise_channel": None
+    }
 
     # "Load Song" button:
     tk.Button(root, text="Load Song", command=lambda: load_audio(state)).pack()
@@ -26,8 +34,8 @@ def create_gui():
 
     # Speed buttons:
     speed_frame = tk.Frame(root)
-    tk.Button(speed_frame, text="Speed Up", command=lambda: speed_up(state)).pack(side="left")
-    tk.Button(speed_frame, text="Slow Down", command=lambda: slow_down(state)).pack(side="left")
+    tk.Button(speed_frame, text="Speed Up", command=lambda: toggle_reverb_spedup(state)).pack(side="right")
+    tk.Button(speed_frame, text="Slow Down", command=lambda: toggle_reverb_slowdown(state)).pack(side="left")
     speed_frame.pack()
 
     # Effect buttons:
