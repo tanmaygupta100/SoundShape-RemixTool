@@ -17,3 +17,56 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/*----------------- Shared button styles -----------------*/
+.custom-button {
+  border-radius: 0.5rem; /* Custom border radius */
+  width: 100px;
+  height: 100px;
+  transition: all 0.3s ease-in-out; /* Smooth transition for in AND out */
+}
+
+/* OFF button (default state) */
+.off-button {
+  background: radial-gradient(circle, #3e2b2b, #9a7a6e); /* Dark brown center, lighter brown edges */
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5); /* Inner shadow */
+  /* Horizontal offset, Vertical offset, blur radius, spread/size radius */
+  /* R  G B alpha(opacity) */
+}
+/* Hover effect for OFF button */
+.off-button:hover {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.6); /* Darker, more intense shadow on hover */
+}
+
+/*--------- ON buttons (clicked state) ---------*/
+
+/* ON button - Light to Dark Gradient (Orange) */
+.on-button-orange {
+  background: radial-gradient(circle, #fbbf24, #fb923c, #f87171); /* Gradient from yellow to red */
+  box-shadow: 0 0 15px 4px rgba(255, 165, 0, 0.3); /* Default glow */
+}
+
+.on-button-orange:hover {
+  box-shadow: 0 0 25px 7px rgba(255, 165, 0, 0.4); /* Wider, more intense shadow */
+}
+
+/* ON button - Light to Dark Blue Gradient */
+.on-button-blue {
+  background: radial-gradient(circle, #56ccf2, #2f80ed); /* Gradient from light blue to dark blue */
+  box-shadow: 0 0 15px 4px rgba(56, 139, 255, 0.3); /* Blue glow */
+}
+
+.on-button-blue:hover {
+  box-shadow: 0 0 25px 7px rgba(56, 139, 255, 0.4); /* More intense blue shadow */
+}
+
+/* ON button - Light to Dark Green Gradient */
+.on-button-green {
+  background: radial-gradient(circle, #6fcf97, #27ae60); /* Gradient from light green to dark green */
+  box-shadow: 0 0 15px 4px rgba(39, 174, 96, 0.3); /* Green glow */
+}
+
+.on-button-green:hover {
+  box-shadow: 0 0 25px 7px rgba(39, 174, 96, 0.4); /* More intense green shadow */
+}

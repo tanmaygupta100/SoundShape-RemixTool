@@ -8,10 +8,10 @@
 const Card = ({children, className}) => {
     return (
         <div className= {`
-            bg-blue-500
-            border border-red-500
+            bg-cusBg
+            border-2 border-cusBrdr
             w-[400px] h-[400px]
-            shadow-xl rounded-md"
+            shadow-cusShadow rounded-xl
             ${className}
         `}>
             {children}
