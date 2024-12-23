@@ -4,15 +4,37 @@ import Button from '../components/button';
 
 const Main = () => {
 
-    // Track button states:
-    const [isAClicked, setIsAClicked] = useState(false);
-    const [isBClicked, setIsBClicked] = useState(false);
-    const [isCClicked, setIsCClicked] = useState(false);
-
-    // Toggle button states:
-    const handleAClick = () => setIsAClicked(!isAClicked);
-    const handleBClick = () => setIsBClicked(!isBClicked);
-    const handleCClick = () => setIsCClicked(!isCClicked);
+    const [isAClicked, setIsAClicked] = useState(false);  // Song Play
+    const [isBClicked, setIsBClicked] = useState(false);  // Song Pause
+    const [isCClicked, setIsCClicked] = useState(false);  // Song Skip
+  
+    // Handle Button Clicks
+    const handleAClick = () => {
+        setIsAClicked(!isAClicked);
+            if (!isAClicked) {
+            console.log("Song is playing");
+        } else {
+            console.log("Song is not playing");
+        }
+    };
+  
+    const handleBClick = () => {
+        setIsBClicked(!isBClicked);
+            if (!isBClicked) {
+            console.log("Song is paused");
+        } else {
+            console.log("Song is not paused");
+        }
+    };
+  
+    const handleCClick = () => {
+        setIsCClicked(!isCClicked);
+            if (!isCClicked) {
+            console.log("Song skipped");
+        } else {
+            console.log("Song not skipped");
+        }
+    };
 
     return (
         <div className="flex justify-center items-center min-h-screen">
