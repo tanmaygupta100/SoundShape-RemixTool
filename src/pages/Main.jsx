@@ -4,18 +4,35 @@ import Button from '../components/button';
 
 const Main = () => {
 
-    const [isBClicked, setIsBClicked] = useState(false); // Track button state.
-    const handleBClick = () => {
-        setIsBClicked(!isBClicked); // Toggle state of button.
-    };
+    // Track button states:
+    const [isAClicked, setIsAClicked] = useState(false);
+    const [isBClicked, setIsBClicked] = useState(false);
+    const [isCClicked, setIsCClicked] = useState(false);
+
+    // Toggle button states:
+    const handleAClick = () => setIsAClicked(!isAClicked);
+    const handleBClick = () => setIsBClicked(!isBClicked);
+    const handleCClick = () => setIsCClicked(!isCClicked);
 
     return (
         <div className="flex justify-center items-center min-h-screen">
             <Card className="flex items-center justify-center
                 w-[900px] h-[450px]">
+                
                 <Button
-                    isClicked={isBClicked} onClick={handleBClick}
-                    className
+                    isClicked={isAClicked}
+                    onClick={handleAClick}
+                    color="orange" // Pass the color to button.js
+                />
+                <Button
+                    isClicked={isBClicked}
+                    onClick={handleBClick}
+                    color="blue"
+                />
+                <Button
+                    isClicked={isCClicked}
+                    onClick={handleCClick}
+                    color="green"
                 />
             </Card>
         </div>
