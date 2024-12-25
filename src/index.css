@@ -3,14 +3,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts: */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @apply bg-cusAppBg text-cusTxt
+}
+
+.heading-font {
+  font-family: 'Fugaz One', cursive;
 }
 
 code {
@@ -72,7 +79,7 @@ code {
 
 .circle-button {
   border-radius: 50%;
-  background: radial-gradient(circle, #43342e, #7a5d53, #9a7a6e);
+  background: radial-gradient(circle, #232221, #474543, #5d5a58);
   display: flex; /* Center content inside circle */
   justify-content: center; /* Horizontally center content */
   align-items: center; /* Vertically center content */
