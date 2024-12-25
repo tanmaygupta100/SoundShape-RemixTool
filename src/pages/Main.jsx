@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Card from '../components/card';
 import LedButton from '../components/LedButton';
 import RegButton from '../components/RegButton';
-import { ArrowDownTrayIcon} from '@heroicons/react/24/outline';
-import { ArrowPathIcon, BackwardIcon, ForwardIcon, PlayPauseIcon } from '@heroicons/react/16/solid';
+import { ArrowPathIcon, ArrowDownTrayIcon, ArrowUpTrayIcon, BackwardIcon, ForwardIcon, PlayPauseIcon } from '@heroicons/react/16/solid';
+import Trackbar from '../components/Trackbar';
 
 const Main = () => {
 
@@ -40,6 +40,18 @@ const Main = () => {
     return (
         <div className="flex justify-center items-center min-h-screen">
             <Card className="relative w-[900px] h-[500px]">
+
+            {/* Top Left - Text */}
+            <div className="absolute top-4 left-4 opacity-80">
+                <p>RETROFICATION</p>
+                <p>SDSH-2.0</p>
+                <p>AUD-RMXR</p>
+            </div>
+
+            {/* Top Right - Logo */}
+            <div className="absolute top-4 right-4 opacity-70">
+                <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-yellow-500 rounded-full" />
+            </div>
 
                 {/* SDSH HEADER: */}
                 <h1
@@ -133,10 +145,27 @@ const Main = () => {
                         wid={40} hei={40}
                     >
                         <ArrowDownTrayIcon
-                            className="text-cusTxt" width={25} opacity={0.7}
+                            className="text-cusTxt" width={25} opacity={0.6}
                         />
                     </RegButton>
                 </div>
+
+                <div className="absolute left-1/2 top-14 transform -translate-x-1/2 flex flex-row items-center gap-x-3">
+                    <RegButton
+                        shape='sqr'
+                        wid={40} hei={40}
+                    >
+                        <ArrowUpTrayIcon
+                            className="text-cusTxt" width={25} opacity={0.6}
+                        />
+                    </RegButton>
+                    <Trackbar
+                        wid={500} hei={60}
+                    >
+                        <p className="track-font ml-3 text-4xl text-shadow">Aruarian Dance</p>
+                    </Trackbar>
+                </div>
+
             </Card>
         </div>
     );
