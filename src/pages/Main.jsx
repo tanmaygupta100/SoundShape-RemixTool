@@ -10,6 +10,8 @@ const Main = () => {
     const [isAClicked, setIsAClicked] = useState(false);  // Song Play
     const [isBClicked, setIsBClicked] = useState(false);  // Song Pause
     const [isCClicked, setIsCClicked] = useState(false);  // Song Skip
+
+    const trackName = "Aruarian Dance - Nujabes";
   
     // Handle Button Clicks
     const handleAClick = () => {
@@ -42,15 +44,23 @@ const Main = () => {
             <Card className="relative w-[900px] h-[500px]">
 
             {/* Top Left - Text */}
-            <div className="absolute top-4 left-4 opacity-80">
-                <p>RETROFICATION</p>
-                <p>SDSH-2.0</p>
-                <p>AUD-RMXR</p>
+            <div className="absolute top-4 left-4 opacity-80 text-xs italic flex flex-col whitespace-normal">
+                RETROFICATION<br/>
+                SDSH-2.0<br/>
+                AUD-RMXR
             </div>
 
             {/* Top Right - Logo */}
-            <div className="absolute top-4 right-4 opacity-70">
-                <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-yellow-500 rounded-full" />
+            <div className="absolute top-4 right-4 opacity-80">
+                <div
+                    className="relative w-12 h-12 bg-gradient-to-r from-pink-600 to-yellow-600 rounded-full"
+                    style={{ boxShadow: 'inset 0px 0px 4px rgba(0, 0, 0, 0.9)' }}
+                >
+                    {/* Horizontal lines: */}
+                    <div className="absolute top-[55%] left-0 w-full h-1 bg-cusBg"></div>
+                    <div className="absolute top-[72%] left-0 w-full h-1 bg-cusBg"></div>
+                    <div className="absolute top-[86%] left-0 w-full h-1 bg-cusBg"></div>
+                </div>
             </div>
 
                 {/* SDSH HEADER: */}
@@ -162,7 +172,10 @@ const Main = () => {
                     <Trackbar
                         wid={500} hei={60}
                     >
-                        <p className="track-font ml-3 text-4xl text-shadow">Aruarian Dance</p>
+                        <p className="track-font ml-3 text-4xl text-shadow"
+                        >
+                            {trackName.length > 25 ? trackName.slice(0,24) + '...' : trackName}
+                        </p>
                     </Trackbar>
                 </div>
 

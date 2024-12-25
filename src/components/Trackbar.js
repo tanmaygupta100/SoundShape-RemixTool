@@ -1,6 +1,7 @@
 
 
 const Trackbar = ({children, wid, hei}) => {
+
     return (
         <div
             className={`trackbar`}
