@@ -5,7 +5,7 @@ const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Setting file types for tailwind to scan for.
+    "./src/**/*.{html,js,jsx,ts,tsx}", // Setting file types for tailwind to scan for.
   ],
   theme: {
     extend: {

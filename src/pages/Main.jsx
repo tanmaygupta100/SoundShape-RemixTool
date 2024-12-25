@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Card from '../components/card';
 import LedButton from '../components/LedButton';
 import RegButton from '../components/RegButton';
+import { ArrowDownTrayIcon} from '@heroicons/react/24/outline';
 
 const Main = () => {
 
@@ -44,24 +45,36 @@ const Main = () => {
                     isClicked={isAClicked}
                     onClick={handleAClick}
                     color="orange" // Pass the color to button.js
+                    wid={100} hei={100}
                 />
                 <LedButton
                     isClicked={isBClicked}
                     onClick={handleBClick}
                     color="blue"
+                    wid={100} hei={100}
                 />
                 <LedButton
                     isClicked={isCClicked}
                     onClick={handleCClick}
                     color="green"
+                    wid={100} hei={100}
                 />
                 <RegButton
-                />
+                    shape=""
+                    wid={100} hei={100}
+                >
+                    <ArrowDownTrayIcon
+                        className="text-cusTxt" width={40} opacity={0.6}
+                    />
+                </RegButton>
+
                 <RegButton
                     shape='sqr'
+                    wid={100} hei={100}
                 />
                 <RegButton
                     shape='dia'
+                    wid={100} hei={100}
                 />
             </Card>
         </div>

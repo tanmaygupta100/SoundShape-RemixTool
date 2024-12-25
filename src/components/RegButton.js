@@ -1,6 +1,6 @@
 
 
-const RegButton = ({shape, children}) =>
+const RegButton = ({shape, children, wid, hei}) =>
 {
     const getRegButtonClass = () => {
         switch (shape) {
@@ -15,10 +15,8 @@ const RegButton = ({shape, children}) =>
 
     return (
         <button
-            className={`
-                circle-button
-                ${getRegButtonClass()}
-            `}
+            className={`circle-button ${getRegButtonClass()}`}
+            style={{ width: `${wid}px`, height: `${hei}px` }}
         >
             {children}
         </button>

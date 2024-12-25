@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const LedButton = ({ children, className, isClicked, onClick, color }) => {
+const LedButton = ({ children, className, isClicked, onClick, color, wid, hei }) => {
 
     // Colour value that gets passed in when Button is called:
     const getButtonClass = () => {
@@ -25,6 +25,7 @@ const LedButton = ({ children, className, isClicked, onClick, color }) => {
                 ${getButtonClass()}
             `}
             onClick={onClick}
+            style={{ width: `${wid}px`, height: `${hei}px` }}
         >
             {children}
         </button>

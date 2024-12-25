@@ -22,8 +22,6 @@ code {
 /*----------------- Shared button styles -----------------*/
 .custom-button {
   border-radius: 0.5rem; /* Custom border radius */
-  width: 100px;
-  height: 100px;
   transition: all 0.3s ease-in-out; /* Smooth transition for in AND out */
   cursor: click;
 }
@@ -73,8 +71,6 @@ code {
 }
 
 .circle-button {
-  width: 100px;
-  height: 100px;
   border-radius: 50%;
   background: radial-gradient(circle, #43342e, #7a5d53, #9a7a6e);
   display: flex; /* Center content inside circle */
