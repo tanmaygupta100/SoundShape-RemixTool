@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../components/card';
-import Button from '../components/button';
+import LedButton from '../components/LedButton';
+import RegButton from '../components/RegButton';
 
 const Main = () => {
 
@@ -17,7 +18,6 @@ const Main = () => {
             console.log("Song is not playing");
         }
     };
-  
     const handleBClick = () => {
         setIsBClicked(!isBClicked);
             if (!isBClicked) {
@@ -26,7 +26,6 @@ const Main = () => {
             console.log("Song is not paused");
         }
     };
-  
     const handleCClick = () => {
         setIsCClicked(!isCClicked);
             if (!isCClicked) {
@@ -38,23 +37,31 @@ const Main = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen">
-            <Card className="flex items-center justify-center
+            <Card className="flex items-center justify-center space-x-10
                 w-[900px] h-[450px]">
                 
-                <Button
+                <LedButton
                     isClicked={isAClicked}
                     onClick={handleAClick}
                     color="orange" // Pass the color to button.js
                 />
-                <Button
+                <LedButton
                     isClicked={isBClicked}
                     onClick={handleBClick}
                     color="blue"
                 />
-                <Button
+                <LedButton
                     isClicked={isCClicked}
                     onClick={handleCClick}
                     color="green"
+                />
+                <RegButton
+                />
+                <RegButton
+                    shape='sqr'
+                />
+                <RegButton
+                    shape='dia'
                 />
             </Card>
         </div>

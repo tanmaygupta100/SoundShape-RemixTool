@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const Button = ({ children, className, isClicked, onClick, color }) => {
+const LedButton = ({ children, className, isClicked, onClick, color }) => {
 
     // Colour value that gets passed in when Button is called:
     const getButtonClass = () => {
@@ -31,4 +31,4 @@ const Button = ({ children, className, isClicked, onClick, color }) => {
     );
 };
 
-export default Button;
+export default LedButton;
