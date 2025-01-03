@@ -4,6 +4,7 @@ import LedButton from '../components/LedButton';
 import RegButton from '../components/RegButton';
 import { ArrowPathIcon, ArrowDownTrayIcon, ArrowUpTrayIcon, BackwardIcon, ForwardIcon, PlayPauseIcon } from '@heroicons/react/16/solid';
 import Trackbar from '../components/Trackbar';
+import Slider from '../components/Slider';
 
 const Main = () => {
 
@@ -43,25 +44,25 @@ const Main = () => {
         <div className="flex justify-center items-center min-h-screen">
             <Card className="relative w-[900px] h-[500px]">
 
-            {/* Top Left - Text */}
-            <div className="absolute top-4 left-4 opacity-80 text-xs italic flex flex-col whitespace-normal">
-                RETROFICATION<br/>
-                SDSH-2.0<br/>
-                AUD-RMXR
-            </div>
-
-            {/* Top Right - Logo */}
-            <div className="absolute top-4 right-4 opacity-80">
-                <div
-                    className="relative w-12 h-12 bg-gradient-to-r from-pink-600 to-yellow-600 rounded-full"
-                    style={{ boxShadow: 'inset 0px 0px 4px rgba(0, 0, 0, 0.9)' }}
-                >
-                    {/* Horizontal lines: */}
-                    <div className="absolute top-[55%] left-0 w-full h-1 bg-cusBg"></div>
-                    <div className="absolute top-[72%] left-0 w-full h-1 bg-cusBg"></div>
-                    <div className="absolute top-[86%] left-0 w-full h-1 bg-cusBg"></div>
+                {/* Top Left - Text */}
+                <div className="absolute top-4 left-4 opacity-80 text-xs italic flex flex-col whitespace-normal">
+                    RETROFICATION<br/>
+                    SDSH-2.0<br/>
+                    AUD-RMXR
                 </div>
-            </div>
+
+                {/* Top Right - Logo */}
+                <div className="absolute top-4 right-4 opacity-80">
+                    <div
+                        className="relative w-12 h-12 bg-gradient-to-r from-pink-600 to-yellow-600 rounded-full"
+                        style={{ boxShadow: 'inset 0px 0px 4px rgba(0, 0, 0, 0.9)' }}
+                    >
+                        {/* Horizontal lines: */}
+                        <div className="absolute top-[55%] left-0 w-full h-1 bg-cusBg"></div>
+                        <div className="absolute top-[72%] left-0 w-full h-1 bg-cusBg"></div>
+                        <div className="absolute top-[86%] left-0 w-full h-1 bg-cusBg"></div>
+                    </div>
+                </div>
 
                 {/* SDSH HEADER: */}
                 <h1
@@ -82,6 +83,20 @@ const Main = () => {
                         className='flex items-end justify-end'
                     />
                 </div>
+                {/* SPEED SLIDER: */}
+                <div className="absolute left-4 bottom-24">
+                    <Slider
+                            min={-3} max={3} step={1} init={0}
+                    />
+                </div>
+                <div
+                    className="absolute left-36 bottom-5 flex flex-col items-end text-cusTxt opacity-40"
+                    style={{ gap: `2.5rem`, transform: 'translateX(-0.5rem) translateY(-0.1rem)' }}
+                >
+                    <p>3</p>
+                    <p>0</p>
+                    <p>-3</p>
+                </div>
 
                 {/* REVERB button: */}
                 <div className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
@@ -93,6 +108,21 @@ const Main = () => {
                         wid={100} hei={100}
                     />
                 </div>
+                {/* REVERB SLIDER: */}
+                <div className="absolute right-4 bottom-24">
+                    <Slider
+                            min={0} max={6} step={1} init={0}
+                    />
+                </div>
+                <div
+                    className="absolute right-36 bottom-6 flex flex-col items-end text-cusTxt opacity-40"
+                    style={{ gap: `2.5rem`, transform: 'translateX(0.5rem) translateY(0.1rem)' }}
+                >
+                    <p>6</p>
+                    <p>3</p>
+                    <p>0</p>
+                </div>
+                
                 {/* WHITE NOISE button: */}
                 <div className="absolute left-1/2 bottom-8 transform -translate-x-1/2 flex flex-col items-center">
                     <p className="mb-1 opacity-80 font-semibold">WHITE NOISE</p>

@@ -14,6 +14,7 @@ module.exports = {
         cusAppBg: '#302820',
         cusTxt: '#eae4df',
         cusBrdr: '#a18065',
+        cusSldr: '#343739',
       },
       boxShadow: {
         //horizontal offset, vertical offset, blur radious
