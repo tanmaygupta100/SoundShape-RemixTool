@@ -9,10 +9,10 @@ const LedButton = ({ children, className, isClicked, onClick, color, wid, hei })
         switch (color) {
             case 'orange':
                 return isClicked ? 'on-button-orange' : 'off-button';
-            case 'blue':
-                return isClicked ? 'on-button-blue' : 'off-button';
-            case 'green':
-                return isClicked ? 'on-button-green' : 'off-button';
+            case 'yellow':
+                return isClicked ? 'on-button-yellow' : 'off-button';
+            case 'red':
+                return isClicked ? 'on-button-red' : 'off-button';
             default:
                 return 'off-button'; // Default fallback for errors.
         }

@@ -52,7 +52,7 @@ const Main = () => {
                 </div>
 
                 {/* Top Right - Logo */}
-                <div className="absolute top-4 right-4 opacity-80">
+                <div className="absolute top-4 right-4">
                     <div
                         className="relative w-12 h-12 bg-gradient-to-r from-pink-600 to-yellow-600 rounded-full"
                         style={{ boxShadow: 'inset 0px 0px 4px rgba(0, 0, 0, 0.9)' }}
@@ -78,7 +78,7 @@ const Main = () => {
                     <LedButton
                         isClicked={isAClicked}
                         onClick={handleAClick}
-                        color="orange" // Pass the color to button.js
+                        color="red" // Pass the color to button.js
                         wid={100} hei={100}
                         className='flex items-end justify-end'
                     />
@@ -104,7 +104,7 @@ const Main = () => {
                     <LedButton
                         isClicked={isBClicked}
                         onClick={handleBClick}
-                        color="green"
+                        color="yellow"
                         wid={100} hei={100}
                     />
                 </div>
@@ -129,7 +129,7 @@ const Main = () => {
                     <LedButton
                         isClicked={isCClicked}
                         onClick={handleCClick}
-                        color="blue"
+                        color="orange"
                         wid={100} hei={100}
                     />
                 </div>
@@ -141,7 +141,7 @@ const Main = () => {
                         wid={60} hei={60}
                     >
                         <PlayPauseIcon
-                            className="text-cusTxt transform rotate-[-45deg]" width={40} opacity={0.6}
+                            className="text-cusTxt transform rotate-[-45deg]" width={40} opacity={0.8}
                         />
                     </RegButton>
                 </div>
@@ -154,7 +154,7 @@ const Main = () => {
                         wid={50} hei={50}
                     >
                         <BackwardIcon
-                            className="text-cusTxt" width={25} opacity={0.6}
+                            className="text-cusTxt" width={25} opacity={0.8}
                         />
                     </RegButton>
                     {/* Backward: */}
@@ -163,7 +163,7 @@ const Main = () => {
                         wid={50} hei={50}
                     >
                         <ForwardIcon
-                            className="text-cusTxt" width={25} opacity={0.6}
+                            className="text-cusTxt" width={25} opacity={0.8}
                         />
                     </RegButton>
                 </div>
@@ -176,7 +176,7 @@ const Main = () => {
                         wid={40} hei={40}
                     >
                         <ArrowPathIcon
-                            className="text-cusTxt" width={25} opacity={0.6}
+                            className="text-cusTxt" width={25} opacity={0.8}
                         />
                     </RegButton>
                     {/* Download: */}
@@ -185,18 +185,19 @@ const Main = () => {
                         wid={40} hei={40}
                     >
                         <ArrowDownTrayIcon
-                            className="text-cusTxt" width={25} opacity={0.6}
+                            className="text-cusTxt" width={25} opacity={0.8}
                         />
                     </RegButton>
                 </div>
 
+                {/* UPLOAD button and TRACKBAR: */}
                 <div className="absolute left-1/2 top-14 transform -translate-x-1/2 flex flex-row items-center gap-x-3">
                     <RegButton
                         shape='sqr'
                         wid={40} hei={40}
                     >
                         <ArrowUpTrayIcon
-                            className="text-cusTxt" width={25} opacity={0.6}
+                            className="text-cusTxt" width={25} opacity={0.8}
                         />
                     </RegButton>
                     <Trackbar
