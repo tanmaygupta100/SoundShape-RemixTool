@@ -114,9 +114,9 @@ code {
 
 /*------------- TRACK bar: -------------*/
 .trackbar {
-  box-shadow: inset 0 0 10px 2px #322102;
+  box-shadow: inset 0 0 10px 2px #241802;
   border-width: 3px;
-  border-color: rgb(65, 45, 4);
+  border-color: rgb(39, 28, 6);
   display: flex;
   align-items: center; /* Vertically center content */
   background: radial-gradient(circle, rgb(239, 165, 100) 0%, rgb(243, 155, 79) 22%, rgb(132, 75, 25) 100%);

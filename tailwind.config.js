@@ -10,10 +10,10 @@ module.exports = {
   theme: {
     extend: {
       colors: { // Added new theme.extend.colors section for custom colours.
-        cusBg: '#4f3a2f',
-        cusAppBg: '#121212',
-        cusTxt: '#dba284',
-        cusBrdr: '#a87c65',
+        cusBg: '#201713',
+        cusAppBg: '#0d0d0d',
+        cusTxt: '#a3755c',
+        cusBrdr: '#a3755c',
         cusSldr: '#8f8f8f',
       },
       boxShadow: {

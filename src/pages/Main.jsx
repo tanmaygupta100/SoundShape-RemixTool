@@ -45,7 +45,7 @@ const Main = () => {
             <Card className="relative w-[900px] h-[500px]">
 
                 {/* Top Left - Text */}
-                <div className="absolute top-4 left-4 opacity-80 text-xs italic flex flex-col whitespace-normal">
+                <div className="absolute top-4 left-4 opacity-90 text-xs italic flex flex-col whitespace-normal">
                     RETROFICATION<br/>
                     SDSH-2.0<br/>
                     AUD-RMXR
@@ -66,7 +66,7 @@ const Main = () => {
 
                 {/* SDSH HEADER: */}
                 <h1
-                    className="heading-font text-xl opacity-80
+                    className="heading-font text-xl opacity-90
                         absolute left-1/2 top-3 transform -translate-x-1/2 flex flex-col items-center"
                 >
                     SOUNDSHAPE
@@ -74,7 +74,7 @@ const Main = () => {
 
                 {/* SPEED button: */}
                 <div className="absolute left-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
-                    <p className="mr-11 mb-1 opacity-80 font-semibold">SPEED</p>
+                    <p className="mr-11 mb-1 opacity-90 font-semibold">SPEED</p>
                     <LedButton
                         isClicked={isAClicked}
                         onClick={handleAClick}
@@ -90,7 +90,7 @@ const Main = () => {
                     />
                 </div>
                 <div
-                    className="absolute left-36 bottom-5 flex flex-col items-end text-cusTxt opacity-40"
+                    className="absolute left-36 bottom-5 flex flex-col items-end text-cusTxt opacity-60"
                     style={{ gap: `2.5rem`, transform: 'translateX(-0.5rem) translateY(-0.1rem)' }}
                 >
                     <p>3</p>
@@ -100,7 +100,7 @@ const Main = () => {
 
                 {/* REVERB button: */}
                 <div className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
-                    <p className="mr-11 mb-1 opacity-80 font-semibold">REVERB</p>
+                    <p className="mr-11 mb-1 opacity-90 font-semibold">REVERB</p>
                     <LedButton
                         isClicked={isBClicked}
                         onClick={handleBClick}
@@ -115,7 +115,7 @@ const Main = () => {
                     />
                 </div>
                 <div
-                    className="absolute right-36 bottom-6 flex flex-col items-end text-cusTxt opacity-40"
+                    className="absolute right-36 bottom-6 flex flex-col items-end text-cusTxt opacity-60"
                     style={{ gap: `2.5rem`, transform: 'translateX(0.5rem) translateY(0.1rem)' }}
                 >
                     <p>6</p>
@@ -125,7 +125,7 @@ const Main = () => {
                 
                 {/* WHITE NOISE button: */}
                 <div className="absolute left-1/2 bottom-8 transform -translate-x-1/2 flex flex-col items-center">
-                    <p className="mb-1 opacity-80 font-semibold">WHITE NOISE</p>
+                    <p className="mb-1 opacity-90 font-semibold">WHITE NOISE</p>
                     <LedButton
                         isClicked={isCClicked}
                         onClick={handleCClick}
