@@ -10,11 +10,11 @@ module.exports = {
   theme: {
     extend: {
       colors: { // Added new theme.extend.colors section for custom colours.
-        cusBg: '#3d372c',
-        cusAppBg: '#1f1c17',
-        cusTxt: '#bdb5ae',
-        cusBrdr: '#8c826f',
-        cusSldr: '#343739',
+        cusBg: '#2a2a36',
+        cusAppBg: '#15151c',
+        cusTxt: '#9f9fcf',
+        cusBrdr: '#51518a',
+        cusSldr: '#3b3b52',
       },
       boxShadow: {
         //horizontal offset, vertical offset, blur radious

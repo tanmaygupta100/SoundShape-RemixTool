@@ -40,7 +40,7 @@ code {
 
 /* OFF button (default state) */
 .off-button {
-  background: radial-gradient(circle, #3e2b2b, #9a7a6e); /* Dark brown center, lighter brown edges */
+  background: radial-gradient(circle, #38393c, #646568); /* Dark brown center, lighter brown edges */
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5); /* Inner shadow */
   /* Horizontal offset, Vertical offset, blur radius, spread/size radius */
   /* R  G B alpha(opacity) */
@@ -148,7 +148,7 @@ code {
   background: rgb(162, 157, 154); /* Thumb color */
   border-radius: 0.1rem;
   transform: translate(0%, -47.5%);
-  outline: 0.5rem solid rgb(73, 62, 59);
+  outline: 0.5rem solid rgb(59, 62, 73);
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
 
