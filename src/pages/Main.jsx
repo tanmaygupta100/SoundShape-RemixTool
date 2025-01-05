@@ -49,10 +49,14 @@ const Main = () => {
                     myName: myFile.name.replace(/\.mp3$/, "")
                 });
                 setErrorMessage("");
+                console.log(`Uploaded '${myFile.name}'.`);
+                    // audioData.myName doesn't work, because it references something not set yet.
             }
         };
     };
 
+
+    /* ------------ HANDLING PLAYING/PAUSING LOGIC: ------------ */
     const playTrack = () => {
         if(!audioData.myAudio) {
             console.log("No audio.");
@@ -67,6 +71,22 @@ const Main = () => {
             audioData.myAudio.pause(); // If playing, pause.
             console.log("Audio paused.");
         }
+    };
+
+
+    /* ------------ HANDLING BACKWARD/FORWARD LOGIC: ------------ */
+    const changeTime = (direction) => {
+        if (!audioData.myAudio) { return }; // Check if data exists.
+
+        // Change time based on given direction by button:
+        let newTime = audioData.myAudio.currentTime + (direction === 'backward' ? -5 : 5);
+        if (newTime < 0) // Don't let time go below 0.
+            newTime = 0;
+        if (newTime > audioData.myAudio.duration) // Don't let time exceed end.
+            newTime = audioData.myAudio.duration;
+        
+        audioData.myAudio.currentTime = newTime; // Update to current time.
+        console.log(`Audio time adjusted: ${newTime}`);
     };
 
 
@@ -226,21 +246,23 @@ const Main = () => {
                     </RegButton>
                 </div>
 
-                {/* FORWARD/BACKWARD buttons: */}
+                {/* BACKWARD/FORWARD buttons: */}
                 <div className="absolute left-1/2 top-36 transform -translate-x-1/2 flex flex-row items-center gap-x-32">
-                    {/* Forward: */}
+                    {/* BACKWARD: */}
                     <RegButton
                         shape='cir'
                         wid={50} hei={50}
+                        onClick={ () => changeTime('backward') }
                     >
                         <BackwardIcon
                             className="text-cusTxt" width={25} opacity={0.8}
                         />
                     </RegButton>
-                    {/* Backward: */}
+                    {/* FORWARD: */}
                     <RegButton
                         shape='cir'
                         wid={50} hei={50}
+                        onClick={ () => changeTime('forward') }
                     >
                         <ForwardIcon
                             className="text-cusTxt" width={25} opacity={0.8}
