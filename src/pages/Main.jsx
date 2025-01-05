@@ -111,19 +111,27 @@ const Main = () => {
 
 
     /* ------------------------------ HANDLING LED BUTTON LOGIC: ------------------------------ */
-    const [speedOn, setSpeedOn] = useState(false);  // 
-    const [reverbOn, setReverbOn] = useState(false);  // 
-    const [whiteNoiseOn, setWhiteNoiseOn] = useState(false);  // 
+    const [speedOn, setSpeedOn] = useState(false); // Speed controls
+    const [speedValue, setSpeedValue] = useState(0);
+    const [reverbOn, setReverbOn] = useState(false); // Reverb controls
+    const [reverbValue, setReverbValue] = useState(false);
+    const [whiteNoiseOn, setWhiteNoiseOn] = useState(false);  // White noise controls
   
     /* ------ HANDLE SPEED CHANGES ------ */
     const handleSpeed = () => {
         if (!speedOn) {
             console.log("Speed enabled.");
+            setSpeedOn(speedOn);
         } else {
             console.log("Speed disabled.");
+            setSpeedOn(!speedOn);
         }
         setSpeedOn(!speedOn);
     };
+    const changeSpeed = (newValue) => {
+        setSpeedValue(newValue) // Update slider value in parent-state.
+        console.log(`Slider value in parent: ${newValue}`);
+    }
     /* ------ HANDLE REVERB CHANGES ------ */
     const handleReverb = () => {
         if (!reverbOn) {
@@ -197,6 +205,7 @@ const Main = () => {
                 <div className="absolute left-4 bottom-24">
                     <Slider
                             min={-3} max={3} step={1} init={0}
+                            disabled={!speedOn} onValueChange={changeSpeed}
                     />
                 </div>
                 <div
