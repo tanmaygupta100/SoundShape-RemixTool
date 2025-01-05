@@ -129,9 +129,33 @@ const Main = () => {
         setSpeedOn(!speedOn);
     };
     const changeSpeed = (newValue) => {
-        setSpeedValue(newValue) // Update slider value in parent-state.
-        console.log(`Slider value in parent: ${newValue}`);
-    }
+        if (!audioData.myAudio) {
+            console.log("No audio loaded.");
+            return;
+        }
+    
+        // Mapping slider values to corresponding playback speeds:
+        const speedMap = {
+            "-3": 0.65,
+            "-2": 0.75,
+            "-1": 0.85,
+            "0": 1.0,
+            "1": 1.15,
+            "2": 1.25,
+            "3": 1.5,
+        };
+        const playbackRate = speedMap[newValue]; // Gets playback rate based on slider value.
+        
+        if (playbackRate) {
+            audioData.myAudio.playbackRate = playbackRate;
+            console.log(`Playback speed changed to ${newValue}->${playbackRate}x`);
+        } else {
+            console.log("Invalid speed value.");
+        }
+    
+        // Update state:
+        setSpeedValue(newValue); // Update slider value in parent-state.
+    };
     /* ------ HANDLE REVERB CHANGES ------ */
     const handleReverb = () => {
         if (!reverbOn) {
