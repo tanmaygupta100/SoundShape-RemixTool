@@ -111,39 +111,39 @@ const Main = () => {
 
 
     /* ------------------------------ HANDLING LED BUTTON LOGIC: ------------------------------ */
-    const [isAClicked, setIsAClicked] = useState(false);  // 
-    const [isBClicked, setIsBClicked] = useState(false);  // 
-    const [whiteNoiseEnabled, setWhiteNoiseEnabled] = useState(false);  // 
+    const [speedOn, setSpeedOn] = useState(false);  // 
+    const [reverbOn, setReverbOn] = useState(false);  // 
+    const [whiteNoiseOn, setWhiteNoiseOn] = useState(false);  // 
   
-    // Handle Button Clicks
-    const handleAClick = () => {
-        setIsAClicked(!isAClicked);
-            if (!isAClicked) {
-            console.log("Song is playing");
+    /* ------ HANDLE SPEED CHANGES ------ */
+    const handleSpeed = () => {
+        if (!speedOn) {
+            console.log("Speed enabled.");
         } else {
-            console.log("Song is not playing");
+            console.log("Speed disabled.");
         }
+        setSpeedOn(!speedOn);
     };
-    const handleBClick = () => {
-        setIsBClicked(!isBClicked);
-            if (!isBClicked) {
-            console.log("Song is paused");
+    /* ------ HANDLE REVERB CHANGES ------ */
+    const handleReverb = () => {
+        if (!reverbOn) {
+            console.log("Reverb enabled.");
         } else {
-            console.log("Song is not paused");
+            console.log("Reverb disabled.");
         }
+        setReverbOn(!reverbOn);
     };
-
     /* ------ HANDLE WHITE NOISE ------ */
     const handleWhiteNoise = () => {
-        const audio = document.getElementById('vinylAudio'); // Get the audio element by ID.
-        if (whiteNoiseEnabled) { // Pause if currently playing.
+        const audio = document.getElementById('vinylAudio'); // Get the audio element by ID (handled in button JSX below).
+        if (whiteNoiseOn) { // Pause if currently playing.
             audio.pause();
             console.log('White noise enabled.');
         } else { // Play if currently paused.
             audio.play();
             console.log('White noise disabled.');
         }
-        setWhiteNoiseEnabled(!whiteNoiseEnabled); // Toggle the state.
+        setWhiteNoiseOn(!whiteNoiseOn); // Toggle the state.
     };
 
 
@@ -186,8 +186,8 @@ const Main = () => {
                 <div className="absolute left-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
                     <p className="mr-11 mb-1 opacity-90 font-semibold">SPEED</p>
                     <LedButton
-                        isClicked={isAClicked}
-                        onClick={handleAClick}
+                        isClicked={speedOn}
+                        onClick={handleSpeed}
                         color="red" // Pass the color to button.js
                         wid={100} hei={100}
                         className='flex items-end justify-end'
@@ -212,8 +212,8 @@ const Main = () => {
                 <div className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
                     <p className="mr-11 mb-1 opacity-90 font-semibold">REVERB</p>
                     <LedButton
-                        isClicked={isBClicked}
-                        onClick={handleBClick}
+                        isClicked={reverbOn}
+                        onClick={handleReverb}
                         color="yellow"
                         wid={100} hei={100}
                     />
@@ -237,13 +237,14 @@ const Main = () => {
                 <div className="absolute left-1/2 bottom-8 transform -translate-x-1/2 flex flex-col items-center">
                     <p className="mb-1 opacity-90 font-semibold">WHITE NOISE</p>
                     <LedButton
-                        isClicked={whiteNoiseEnabled}
+                        isClicked={whiteNoiseOn}
                         onClick={handleWhiteNoise}
                         color="orange"
                         wid={100} hei={100}
                     />
                 </div>
                 <audio id="vinylAudio" loop>
+                    {/* JSX that creates an id for the handleWhiteNoise function to access the white noise: */}
                     <source src="/audio/vinyl_white_noise.mp3" type="audio/mp3" />
                     Your browser does not support the audio element.
                 </audio>
