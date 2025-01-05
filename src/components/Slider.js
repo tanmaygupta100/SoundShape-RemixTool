@@ -14,9 +14,10 @@ const Slider = ({min, max, step, init}) => {
     const spacing = range > 0 ? parseFloat(width) / range : 0; // Use the 8rem width in the calculation
     const lines = Array.from({ length: range + 1 }, (_, i) => min + i); // Generate array of lines
 
+    // For checking distances/sizes between and of level-lines in slider.
+    //console.log(`Range: ${range}, Spacing: ${spacing}, Total Height: ${(range - 1) * spacing}rem`);
 
-    console.log(`Range: ${range}, Spacing: ${spacing}, Total Height: ${(range - 1) * spacing}rem`);
-
+    
     return (
         
         <div className='flex justify-center'>

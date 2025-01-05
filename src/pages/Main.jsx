@@ -8,11 +8,83 @@ import Slider from '../components/Slider';
 
 const Main = () => {
 
+    /* ------------ HANDLING UPLOAD LOGIC: ------------ */
+    const [trackName, setTrackName] = useState(""); // Only saves track name.
+    const [errorMessage, setErrorMessage] = useState("");
+    const [audioFile, setAudioFile] = useState(null); // Audio file saving.
+    
+    const handleUpload = (file) => {
+        if (!file) return;
+
+        // Check if file type is not an MP3:
+        if (file.type !== "audio/mp3") {
+                    setErrorMessage("Only MP3 files are allowed.");
+        }
+
+        setErrorMessage(""); // Clearing any previous error messages.
+
+        // Clear and replace an existing track if upload button is pressed again:
+        if (audioFile || trackName) {
+            setAudioFile(null);
+            setTrackName("");
+            console.log('File replaced with new upload');
+        }
+        
+        // Creating new Audio object from uploaded file:
+        const audio = new Audio(URL.createObjectURL(file));
+            /*
+                URL.createObjectURL(file) - Generates a temporary URL (blob URL) pointing to uploaded file.
+                    The URL is binary data representing the file to be accesses by the browser.
+                new Audio(blobURL) - Creates an HTMLAudioElement to play audio and even extract metadata.
+            */
+        audio.onloadedmetadata = () => {
+            if (audio.duration > 300)
+                setErrorMessage("Audio must be less than 5 minutes long.");
+            else {
+                setTrackName(file.name.replace(".mp3", ""));
+                setAudioFile(audio); // Saves the Audio object.
+                setErrorMessage("");
+            }
+        };
+    };
+
+    const playTrack = () => {
+        if(!audioFile) {
+            console.log("No audio.");
+            return;
+        }
+
+        if (audioFile.paused) {
+            audioFile.play(); // If paused, start playing.
+            console.log("Audio playing.");
+        }
+        else {
+            audioFile.pause(); // If playing, pause.
+            console.log("Audio paused.");
+        }
+    };
+
+
+    /* ------------ HANDLING UPLOAD LOGIC: ------------ */
+    /* TODO: Add logic for resetting sliders and buttons */
+    const clearTrack = () => {
+        setTrackName("Reset");
+        setTimeout( () => setTrackName(""), 1000 ); // Clear message after 1 second.
+        setErrorMessage("");
+
+        // If audio file exists in the audioFile variable:
+        if (audioFile) {
+            audioFile.pause(); // Stop playback.
+            URL.revokeObjectURL(audioFile.src); // Releases memroy for the blob URL.
+            setAudioFile(null); // Clears the Audio object.
+        }
+    }
+
+
+    /* ------------ HANDLING LED BUTTON LOGIC: ------------ */
     const [isAClicked, setIsAClicked] = useState(false);  // Song Play
     const [isBClicked, setIsBClicked] = useState(false);  // Song Pause
     const [isCClicked, setIsCClicked] = useState(false);  // Song Skip
-
-    const trackName = "Aruarian Dance - Nujabes";
   
     // Handle Button Clicks
     const handleAClick = () => {
@@ -139,6 +211,7 @@ const Main = () => {
                     <RegButton
                         shape="dia"
                         wid={60} hei={60}
+                        onClick={playTrack}
                     >
                         <PlayPauseIcon
                             className="text-cusTxt transform rotate-[-45deg]" width={40} opacity={0.8}
@@ -174,6 +247,7 @@ const Main = () => {
                     <RegButton
                         shape='sqr'
                         wid={40} hei={40}
+                        onClick={clearTrack}
                     >
                         <ArrowPathIcon
                             className="text-cusTxt" width={25} opacity={0.8}
@@ -192,14 +266,24 @@ const Main = () => {
 
                 {/* UPLOAD button and TRACKBAR: */}
                 <div className="absolute left-1/2 top-14 transform -translate-x-1/2 flex flex-row items-center gap-x-3">
+                    {/* UPLOAD: */}
                     <RegButton
                         shape='sqr'
                         wid={40} hei={40}
+                        onClick={() => {
+                            console.log("Upload button clicked");
+                            const input = document.createElement('input');
+                            input.type = 'file';
+                            input.accept = 'audio/mp3';
+                            input.onchange = (e) => handleUpload(e.target.files[0]);
+                            input.click();
+                        }}
                     >
                         <ArrowUpTrayIcon
                             className="text-cusTxt" width={25} opacity={0.8}
                         />
                     </RegButton>
+                    {/* TRACKBAR: */}
                     <Trackbar
                         wid={500} hei={60}
                     >
@@ -210,6 +294,15 @@ const Main = () => {
                     </Trackbar>
                 </div>
 
+
+                {/* ----------- ERROR message: ----------- */}
+                {errorMessage && (
+                    // If error exists, then display the div:
+                    <div className= "absolute left-1/2 top-[90%] transform -translate-x-1/2 text-red-500 text-sm"
+                    >
+                        {errorMessage}
+                    </div>
+                )}
             </Card>
         </div>
     );
