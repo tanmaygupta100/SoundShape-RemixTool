@@ -104,10 +104,16 @@ const Main = () => {
     };
 
 
-    /* ------------ HANDLING LED BUTTON LOGIC: ------------ */
+    /* ------------ HANDLING DOWNLOAD LOGIC: ------------ */
+    const downloadTrack = () => {
+
+    }
+
+
+    /* ------------------------------ HANDLING LED BUTTON LOGIC: ------------------------------ */
     const [isAClicked, setIsAClicked] = useState(false);  // 
     const [isBClicked, setIsBClicked] = useState(false);  // 
-    const [isCClicked, setIsCClicked] = useState(false);  // 
+    const [whiteNoiseEnabled, setWhiteNoiseEnabled] = useState(false);  // 
   
     // Handle Button Clicks
     const handleAClick = () => {
@@ -126,17 +132,22 @@ const Main = () => {
             console.log("Song is not paused");
         }
     };
-    const handleCClick = () => {
-        setIsCClicked(!isCClicked);
-            if (!isCClicked) {
-            console.log("Song skipped");
-        } else {
-            console.log("Song not skipped");
+
+    /* ------ HANDLE WHITE NOISE ------ */
+    const handleWhiteNoise = () => {
+        const audio = document.getElementById('vinylAudio'); // Get the audio element by ID.
+        if (whiteNoiseEnabled) { // Pause if currently playing.
+            audio.pause();
+            console.log('White noise enabled.');
+        } else { // Play if currently paused.
+            audio.play();
+            console.log('White noise disabled.');
         }
+        setWhiteNoiseEnabled(!whiteNoiseEnabled); // Toggle the state.
     };
 
 
-    /*----------------------------------------------------------------------------------------------*/
+    /*----------------------------------------------------------------------------------------------------------------------------*/
 
 
     return (
@@ -226,12 +237,16 @@ const Main = () => {
                 <div className="absolute left-1/2 bottom-8 transform -translate-x-1/2 flex flex-col items-center">
                     <p className="mb-1 opacity-90 font-semibold">WHITE NOISE</p>
                     <LedButton
-                        isClicked={isCClicked}
-                        onClick={handleCClick}
+                        isClicked={whiteNoiseEnabled}
+                        onClick={handleWhiteNoise}
                         color="orange"
                         wid={100} hei={100}
                     />
                 </div>
+                <audio id="vinylAudio" loop>
+                    <source src="/audio/vinyl_white_noise.mp3" type="audio/mp3" />
+                    Your browser does not support the audio element.
+                </audio>
 
                 {/* PLAY/PAUSE button: */}
                 <div className="absolute left-1/2 top-48 transform -translate-x-1/2 flex flex-col items-center">
