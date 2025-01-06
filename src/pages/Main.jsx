@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../components/card';
 import LedButton from '../components/LedButton';
 import RegButton from '../components/RegButton';
@@ -58,7 +58,7 @@ const Main = () => {
 
     /* ------------ HANDLING PLAYING/PAUSING LOGIC: ------------ */
     const playTrack = () => {
-        if(!audioData.myAudio) {
+        if (!audioData.myAudio) {
             console.log("No audio.");
             return;
         }
@@ -114,7 +114,7 @@ const Main = () => {
     const [speedOn, setSpeedOn] = useState(false); // Speed controls
     const [speedValue, setSpeedValue] = useState(0);
     const [reverbOn, setReverbOn] = useState(false); // Reverb controls
-    const [reverbValue, setReverbValue] = useState(false);
+    const [reverbValue, setReverbValue] = useState(0);
     const [whiteNoiseOn, setWhiteNoiseOn] = useState(false);  // White noise controls
   
     /* ------ HANDLE SPEED CHANGES ------ */
@@ -156,15 +156,38 @@ const Main = () => {
         // Update state:
         setSpeedValue(newValue); // Update slider value in parent-state.
     };
-    /* ------ HANDLE REVERB CHANGES ------ */
+    /* ------------------------------------ HANDLE REVERB CHANGES ------------------------------------ */
     const handleReverb = () => {
         if (!reverbOn) {
             console.log("Reverb enabled.");
+            setReverbOn(reverbOn);
         } else {
             console.log("Reverb disabled.");
+            setReverbOn(!reverbOn);
         }
         setReverbOn(!reverbOn);
     };
+
+    const changeReverb = (newValue) => {
+        setReverbValue(newValue);
+        console.log(`Reverb intensity: ${newValue}`);
+    
+        if (!audioData.myAudio) return;
+    
+        const audio = audioData.myAudio;
+        const echoDelay = 0.2; // 200ms delay for echo
+        const echoVolume = newValue / 10; // Adjust echo volume based on slider (0-1)
+    
+        if (audio.paused) return; // Don't apply echo when audio is paused
+    
+        // Simple echo logic: Create a new audio element with delay
+        const echoAudio = new Audio(audio.src);
+        echoAudio.currentTime = audio.currentTime + echoDelay; // Delay for echo effect
+        echoAudio.volume = echoVolume; // Adjust the volume of the echo based on slider value
+        echoAudio.play();
+    };
+
+
     /* ------ HANDLE WHITE NOISE ------ */
     const handleWhiteNoise = () => {
         const audio = document.getElementById('vinylAudio'); // Get the audio element by ID (handled in button JSX below).
@@ -255,6 +278,7 @@ const Main = () => {
                 <div className="absolute right-4 bottom-24">
                     <Slider
                             min={0} max={6} step={1} init={0}
+                            disabled={!reverbOn} onValueChange={changeReverb}
                     />
                 </div>
                 <div
