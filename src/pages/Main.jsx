@@ -62,14 +62,21 @@ const Main = () => {
             console.log("No audio.");
             return;
         }
-
+    
         if (audioData.myAudio.paused) {
             audioData.myAudio.play(); // If paused, start playing.
             console.log("Audio playing.");
-        }
-        else {
+            // Start the echo if it's playing
+            if (echoAudio && echoAudio.paused) {
+                echoAudio.play();
+            }
+        } else {
             audioData.myAudio.pause(); // If playing, pause.
             console.log("Audio paused.");
+            // Pause the echo as well
+            if (echoAudio) {
+                echoAudio.pause();
+            }
         }
     };
 
@@ -87,6 +94,12 @@ const Main = () => {
         
         audioData.myAudio.currentTime = newTime; // Update to current time.
         console.log(`Audio time adjusted: ${newTime}`);
+
+        // Update the echoAudio to match the new time (if it's set)
+        if (echoAudio) {
+            echoAudio.currentTime = newTime + 0.2; // Delay for the echo audio
+            console.log(`Echo audio time adjusted: ${newTime + 0.2}`);
+        }
     };
 
 
@@ -100,6 +113,12 @@ const Main = () => {
         if (audioData.myAudio) {
             audioData.myAudio.pause(); // Stop playback.
             URL.revokeObjectURL(audioData.myAudio.src); // Releases memroy for the blob URL.
+        }
+
+        // Stop the echo audio if it exists
+        if (echoAudio) {
+            echoAudio.pause();
+            setEchoAudio(null); // Reset echo audio state
         }
     };
 
@@ -149,6 +168,11 @@ const Main = () => {
         if (playbackRate) {
             audioData.myAudio.playbackRate = playbackRate;
             console.log(`Playback speed changed to ${newValue}->${playbackRate}x`);
+            // Adjust the echo audio's playback rate as well (if it exists)
+            if (echoAudio) {
+                echoAudio.playbackRate = playbackRate;
+                console.log(`Echo audio playback speed changed to ${playbackRate}x`);
+            }
         } else {
             console.log("Invalid speed value.");
         }
@@ -168,6 +192,12 @@ const Main = () => {
         setReverbOn(!reverbOn);
     };
 
+
+    // Adding a reference to track the echo audio.
+    const [echoAudio, setEchoAudio] = useState(null);
+    
+    // In changeReverb, instead of directly creating and playing a new echo audio every time,
+    // store it in the state so it can be controlled (paused/stopped).
     const changeReverb = (newValue) => {
         setReverbValue(newValue);
         console.log(`Reverb intensity: ${newValue}`);
@@ -180,11 +210,16 @@ const Main = () => {
     
         if (audio.paused) return; // Don't apply echo when audio is paused
     
-        // Simple echo logic: Create a new audio element with delay
-        const echoAudio = new Audio(audio.src);
-        echoAudio.currentTime = audio.currentTime + echoDelay; // Delay for echo effect
-        echoAudio.volume = echoVolume; // Adjust the volume of the echo based on slider value
-        echoAudio.play();
+        // Create the echo audio if it doesn't exist yet, or update it if it's already there.
+        let echoAudioInstance = echoAudio;
+        if (!echoAudioInstance) {
+            echoAudioInstance = new Audio(audio.src);
+            setEchoAudio(echoAudioInstance);
+        }
+    
+        echoAudioInstance.currentTime = audio.currentTime + echoDelay; // Delay for echo effect
+        echoAudioInstance.volume = echoVolume; // Adjust the volume of the echo based on slider value
+        echoAudioInstance.play();
     };
 
 
